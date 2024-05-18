@@ -1,13 +1,13 @@
 module.exports = {
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
   root: true,
   env: {
     browser: true,
     es2020: true,
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
   extends: [
     'eslint:recommended',
@@ -17,8 +17,9 @@ module.exports = {
     'airbnb',
     'airbnb/hooks',
     'plugin:prettier/recommended',
+    'plugin:react/jsx-runtime'
   ],
-  ignorePatterns: ['dist', '.eslintrc.js'],
+  ignorePatterns: ['dist', 'node_modules', 'build', 'out'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -27,12 +28,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    '@typescript-eslint',
-    'react-refresh',
-    'react',
-    'prettier', 
-  ],
+  plugins: ['@typescript-eslint', 'react-refresh', 'react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
     'react-refresh/only-export-components': [
@@ -40,6 +36,8 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'react/jsx-no-target-blank': ['error', { enforceDynamicLinks: 'always' }],
-    'react/react-in-jsx-scope': 'off', // if you're using React 17+
+    'react/react-in-jsx-scope': 'off', // Disable this rule for React 17+
+    'no-unused-vars': 'off', // Turn off ESLint no-unused-vars rule
+    '@typescript-eslint/no-unused-vars': ['error'], // Use TypeScript's rule for unused variables
   },
 };
